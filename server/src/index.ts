@@ -1,7 +1,6 @@
 import { buildSchema } from "type-graphql"
 // import "class-validator"
 import { ApolloServer } from "apollo-server-express"
-import { HelloResolver } from "./resolvers/hello"
 import { Post } from "./entities/Post"
 import { __prod__ } from "./constants"
 import { MikroORM } from "@mikro-orm/core"
@@ -17,7 +16,7 @@ const main = async () => {
 
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [HelloResolver, PostResolver],
+      resolvers: [PostResolver],
       validate: false,
     }),
     context: () => ({ em: orm.em }),
